@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#3a0719">
+<meta name="description" content="Une surprise d'anniversaire tendre et romantique pour Madame.">
+<title>Joyeux anniversaire, Madame ❤️</title>
+<style>
+:root{color-scheme:dark;--wine:#3a0719;--rose:#e9a9ba;--cream:#fff3ed;--gold:#f5d28b;--muted:#f1cbd5;--glass:rgba(255,244,246,.085);--line:rgba(255,224,230,.2)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;color:var(--cream);font-family:Georgia,"Times New Roman",serif;background:radial-gradient(ellipse at 50% 15%,#76203a 0%,transparent 42%),linear-gradient(145deg,#18070e 0%,#4b0b22 48%,#17070e 100%);overflow-x:hidden}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+a{color:inherit}
+.ambient{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.star{position:absolute;width:3px;height:3px;background:#ffe6a6;border-radius:50%;box-shadow:0 0 12px 3px rgba(255,218,145,.45);animation:twinkle 3s ease-in-out infinite alternate}
+.petal{position:absolute;top:-10vh;width:15px;height:22px;background:linear-gradient(135deg,#ffb1c0,#a80f3a 70%);border-radius:80% 15% 75% 20%;opacity:.5;animation:fall linear infinite}
+.wrap{position:relative;z-index:1;width:min(900px,100%);margin:auto;padding:clamp(18px,4vw,42px) 16px 48px}
+.hero{text-align:center;padding:clamp(32px,8vw,76px) 12px 34px}
+.eyebrow{font:600 .75rem/1.4 system-ui,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+h1{font-size:clamp(2.15rem,8vw,4.6rem);line-height:1.05;margin:15px auto 18px;max-width:780px;font-weight:500;text-shadow:0 5px 30px #19030d}
+h2{font-size:clamp(1.55rem,5vw,2.35rem);font-weight:500;margin:0 0 18px}
+p{line-height:1.7}
+.intro{font-size:clamp(1.12rem,3.4vw,1.55rem);max-width:680px;margin:0 auto;color:#ffe9e9}
+.hero-sub{color:var(--muted);font-style:italic}
+.heart-stage{height:145px;display:grid;place-items:center;margin:18px auto 4px;position:relative}
+.big-heart{font-family:system-ui,sans-serif;font-size:clamp(5.5rem,20vw,8rem);line-height:1;filter:drop-shadow(0 0 18px rgba(255,89,128,.6));animation:heartbeat 1.5s ease-in-out infinite}
+.glow{position:absolute;width:110px;height:110px;border-radius:50%;background:rgba(255,71,116,.2);filter:blur(26px)}
+.messages{display:grid;gap:13px;margin:20px auto 28px}
+.message{padding:18px 20px;border:1px solid var(--line);border-radius:18px;background:var(--glass);backdrop-filter:blur(8px);font-size:clamp(1rem,2.7vw,1.14rem);line-height:1.65;opacity:0;transform:translateY(12px);animation:reveal .7s ease forwards}
+.message:nth-child(2){animation-delay:.2s}.message:nth-child(3){animation-delay:.4s}.message:nth-child(4){animation-delay:.6s}.message:nth-child(5){animation-delay:.8s}
+.message strong{color:#ffd6df;font-weight:600}
+.center{text-align:center}
+.cake{font-size:2.7rem;letter-spacing:.1em;margin:8px}
+.btn{border:1px solid rgba(255,228,188,.55);border-radius:999px;padding:14px 22px;min-height:48px;color:#35101d;background:linear-gradient(135deg,#ffe8b8,#e7a9b8);box-shadow:0 8px 24px rgba(0,0,0,.2);font-weight:700;transition:transform .2s,filter .2s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn:active{transform:scale(.98)}
+.btn.secondary{background:rgba(255,255,255,.07);color:var(--cream);box-shadow:none;border-color:var(--line)}
+.btn.whatsapp{background:#1fb967;border-color:#65e09a;color:#fff;box-shadow:0 8px 24px rgba(11,118,63,.22);width:100%;font-family:system-ui,sans-serif}
+.section{margin:34px 0;padding:clamp(22px,5vw,38px);border:1px solid var(--line);border-radius:26px;background:linear-gradient(140deg,rgba(255,244,246,.09),rgba(255,244,246,.035));box-shadow:0 18px 55px rgba(0,0,0,.15)}
+.invitation{display:none;transform-origin:top center}
+.invitation.show{display:block;animation:cardIn .65s cubic-bezier(.2,.8,.2,1) both}
+.invite-mark{font-size:2rem;margin-bottom:10px}
+.invitation p{margin:10px 0}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.field.full{grid-column:1/-1}
+label,.field-label{font:600 .92rem/1.4 system-ui,sans-serif;color:#ffe1e7}
+input,textarea{width:100%;min-height:48px;border:1px solid rgba(255,220,228,.28);border-radius:13px;padding:12px 14px;background:rgba(20,4,11,.45);color:#fff5f3}
+input::placeholder,textarea::placeholder{color:#cbaab4}
+textarea{resize:vertical;min-height:94px}
+.suggestions{display:flex;flex-wrap:wrap;gap:9px;margin-top:3px}
+.suggestion{border:1px solid rgba(255,220,228,.28);background:rgba(255,255,255,.055);color:#ffe9ed;border-radius:999px;padding:10px 13px;font:500 .9rem/1.3 system-ui,sans-serif;transition:background .2s,border-color .2s}
+.suggestion[aria-pressed="true"]{background:rgba(242,183,199,.22);border-color:var(--gold);box-shadow:inset 0 0 0 1px rgba(245,210,139,.2)}
+.hint{font: .82rem/1.5 system-ui,sans-serif;color:#d9b9c3;margin:0}
+.form-status{font: .9rem/1.5 system-ui,sans-serif;margin:12px 0 0;min-height:1.3em;color:#ffe0a0}
+.closing{padding:32px 10px 18px;text-align:center}
+.closing-heart{font-size:2.2rem;display:inline-block;animation:heartbeat 1.6s ease-in-out infinite}
+.closing p{max-width:690px;margin:12px auto;color:#ffe8ed}
+.footer{font: .78rem/1.5 system-ui,sans-serif;text-align:center;color:#d5aeb9;margin-top:25px}
+.hidden{display:none!important}
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+@keyframes heartbeat{0%,100%{transform:scale(1)}12%{transform:scale(1.09)}24%{transform:scale(1)}38%{transform:scale(1.06)}50%{transform:scale(1)}}
+@keyframes twinkle{from{opacity:.18;transform:scale(.7)}to{opacity:1;transform:scale(1.35)}}
+@keyframes fall{0%{transform:translate3d(0,-10vh,0) rotate(0deg)}100%{transform:translate3d(90px,115vh,0) rotate(620deg)}}
+@keyframes reveal{to{opacity:1;transform:translateY(0)}}
+@keyframes cardIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:620px){.wrap{padding-left:13px;padding-right:13px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.section{border-radius:21px;padding:23px 17px}.hero{padding-top:42px}.message{padding:16px}.btn{width:100%}.suggestion{flex:1 1 auto}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.message{opacity:1;transform:none}.petal{display:none}}
+</style>
+</head>
+<body>
+<div class="ambient" id="ambient" aria-hidden="true"></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<main class="wrap">
+  <section class="hero" id="birthday">
+    <div class="eyebrow">Une petite attention rien que pour toi</div>
+    <div class="heart-stage" aria-hidden="true"><div class="glow"></div><div class="big-heart">❤️</div></div>
+    <p class="intro">Aujourd'hui, une femme mérite un peu plus que des bougies… ❤️🎂</p>
+    <h1>Joyeux anniversaire,<br><span style="color:#f3bdcb">Madame.</span> 🌹</h1>
+    <p class="hero-sub">Aujourd'hui, le monde a une bonne raison de sourire.</p>
+    <div class="cake" aria-label="Gâteau d'anniversaire">🕯️🎂🕯️</div>
+    <div class="messages">
+      <div class="message">Que cette nouvelle année de ta vie t'offre autant de douceur que ton sourire sait en inspirer. ❤️</div>
+      <div class="message">Si le charme était un gâteau, Madame, je crois qu'une seule bougie ne suffirait pas à signaler le danger. 😂🎂</div>
+      <div class="message">Aujourd'hui, tu as le droit d'être la reine, de te laisser gâter et de réclamer un peu plus d'attention que d'habitude. 👑</div>
+      <div class="message">Et si je pouvais choisir un cadeau supplémentaire, ce serait un moment près de toi, quelques regards complices et peut-être un baiser pour couronner la journée… 😘🌹</div>
+      <div class="message"><strong>Joyeux anniversaire, ma belle.</strong> Que cette journée te ressemble : précieuse, lumineuse et délicieusement inoubliable. ❤️</div>
+    </div>
+    <button class="btn" id="revealInvite" type="button">Découvrir ma petite invitation 💌</button>
+  </section>
+
+  <section class="section invitation" id="invitation" aria-live="polite">
+    <div class="center"><div class="invite-mark">💌 🌹</div><h2>Une invitation pour Madame</h2></div>
+    <p>Madame, pour ton anniversaire, j'aimerais t'offrir un moment à deux.</p>
+    <p>Pas besoin d'un programme compliqué : un joli endroit, une ambiance agréable, quelques sourires, une conversation qui fait oublier l'heure… et le plaisir de partager un moment avec toi.</p>
+    <p>Mais aujourd'hui, c'est toi la reine du programme. Alors, j'aimerais te laisser choisir notre petite escapade. ❤️🌹</p>
+    <p><em>Attention : le choix du lieu est entre tes mains, mais le risque que je te trouve encore plus charmante ce jour-là reste entièrement de ma responsabilité. 😂😘</em></p>
+  </section>
+
+  <section class="section" id="rendezvous">
+    <div class="center"><div class="eyebrow">À toi de choisir</div><h2>Notre rendez-vous, à ta façon ❤️</h2><p class="hint">Choisis ce qui te ferait plaisir. Rien n'est envoyé ni enregistré depuis cette page.</p></div>
+    <form id="dateForm" novalidate>
+      <div class="form-grid">
+        <div class="field">
+          <label for="date">Date souhaitée</label>
+          <input id="date" name="date" type="date" required>
+        </div>
+        <div class="field">
+          <label for="time">Heure souhaitée</label>
+          <input id="time" name="time" type="time" required>
+        </div>
+        <div class="field full">
+          <label for="place">Le lieu de ton choix</label>
+          <input id="place" name="place" type="text" maxlength="180" placeholder="Ex. : un restaurant, un jardin, un café…" required autocomplete="off">
+          <p class="hint">Tu peux écrire ton lieu préféré ou sélectionner une idée ci-dessous.</p>
+          <div class="suggestions" role="group" aria-label="Suggestions de rendez-vous">
+            <button class="suggestion" type="button" data-place="Un dîner romantique aux chandelles 🕯️" aria-pressed="false">Un dîner romantique aux chandelles 🕯️</button>
+            <button class="suggestion" type="button" data-place="Un café et une longue conversation ☕" aria-pressed="false">Un café et une longue conversation ☕</button>
+            <button class="suggestion" type="button" data-place="Un endroit calme sous les étoiles 🌙" aria-pressed="false">Un endroit calme sous les étoiles 🌙</button>
+            <button class="suggestion" type="button" data-place="Une sortie surprise 🎁" aria-pressed="false">Une sortie surprise 🎁</button>
+            <button class="suggestion" type="button" data-place="" aria-pressed="false">Un autre endroit, selon mes envies ❤️</button>
+          </div>
+        </div>
+        <div class="field full">
+          <label for="note">Une petite note facultative</label>
+          <textarea id="note" name="note" maxlength="500" placeholder="Une ambiance, un plat, une petite surprise… ou laisse parler ton imagination 💕"></textarea>
+        </div>
+        <div class="field full">
+          <button class="btn whatsapp" type="submit">T'envoyer mon choix sur WhatsApp 💚</button>
+          <p class="hint">WhatsApp s'ouvrira avec ton message déjà préparé. Il te restera à appuyer toi-même sur « Envoyer ».</p>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <section class="closing">
+    <div class="closing-heart" aria-hidden="true">💖</div>
+    <p>Le plus beau cadeau n'est pas forcément l'endroit où l'on va, mais la complicité que l'on emporte avec soi. ❤️</p>
+    <p>Profite de ta journée, Madame. Aujourd'hui, les étoiles sont en service pour toi et Cupidon a exceptionnellement obtenu une autorisation de sortie. 😂✨</p>
+    <button class="btn secondary" id="backToMessage" type="button">Revoir mon message d'anniversaire ❤️</button>
+  </section>
+  <div class="footer">Fait avec tendresse, une pincée d'humour et beaucoup de ❤️</div>
+</main>
+<script>
+(function(){
+  "use strict";
+  const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const ambient = document.getElementById("ambient");
+  if (!reduceMotion) {
+    for (let i=0;i<28;i++) {
+      const s=document.createElement("span"); s.className="star";
+      s.style.left=(Math.random()*100)+"%"; s.style.top=(Math.random()*100)+"%";
+      s.style.animationDelay=(Math.random()*4)+"s"; s.style.animationDuration=(2+Math.random()*3)+"s";
+      ambient.appendChild(s);
+    }
+    for (let i=0;i<13;i++) {
+      const p=document.createElement("span"); p.className="petal";
+      p.style.left=(Math.random()*100)+"%"; p.style.animationDelay=(-Math.random()*18)+"s";
+      p.style.animationDuration=(12+Math.random()*12)+"s"; p.style.opacity=(.2+Math.random()*.4).toString();
+      p.style.transform="rotate("+(Math.random()*360)+"deg)";
+      ambient.appendChild(p);
+    }
+  }
+
+  const dateInput=document.getElementById("date");
+  const today=new Date();
+  const localToday = new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);
+  dateInput.min=localToday;
+
+  const placeInput=document.getElementById("place");
+  const suggestionButtons=[...document.querySelectorAll(".suggestion")];
+  suggestionButtons.forEach(button=>{
+    button.addEventListener("click",()=>{
+      const selected=button.getAttribute("aria-pressed")==="true";
+      suggestionButtons.forEach(b=>b.setAttribute("aria-pressed","false"));
+      if (selected) {
+        placeInput.value="";
+      } else {
+        button.setAttribute("aria-pressed","true");
+        if (button.dataset.place) placeInput.value=button.dataset.place;
+        else { placeInput.value=""; placeInput.focus(); }
+      }
+    });
+  });
+  placeInput.addEventListener("input",()=>{
+    suggestionButtons.forEach(b=>b.setAttribute("aria-pressed",b.dataset.place && b.dataset.place===placeInput.value ? "true":"false"));
+  });
+
+  const invitation=document.getElementById("invitation");
+  document.getElementById("revealInvite").addEventListener("click",()=>{
+    invitation.classList.add("show");
+    invitation.scrollIntoView({behavior:reduceMotion?"auto":"smooth",block:"start"});
+    launchConfetti();
+  });
+  document.getElementById("backToMessage").addEventListener("click",()=>{
+    document.getElementById("birthday").scrollIntoView({behavior:reduceMotion?"auto":"smooth",block:"start"});
+  });
+
+  const form=document.getElementById("dateForm");
+  const status=document.getElementById("formStatus");
+  form.addEventListener("submit",event=>{
+    event.preventDefault();
+    status.textContent="";
+    const chosenDate=dateInput.value;
+    const chosenTime=document.getElementById("time").value;
+    const chosenPlace=placeInput.value.trim();
+    const note=document.getElementById("note").value.trim();
+    if (!chosenDate || !chosenTime || !chosenPlace) {
+      status.textContent="Il manque une information : choisis la date, l'heure et le lieu pour préparer ton invitation. ❤️";
+      const firstMissing=!chosenDate?dateInput:!chosenTime?document.getElementById("time"):placeInput;
+      firstMissing.focus(); firstMissing.reportValidity();
+      return;
+    }
+    if (chosenDate < localToday) {
+      status.textContent="Choisis une date d'aujourd'hui ou une date à venir, Madame. 🌹";
+      dateInput.focus(); return;
+    }
+    const parts=chosenDate.split("-").map(Number);
+    const formattedDate=new Intl.DateTimeFormat("fr-FR",{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"}).format(new Date(Date.UTC(parts[0],parts[1]-1,parts[2])));
+    const message="Coucou ❤️🎂\n\nVoici mon programme préféré pour notre petit rendez-vous d'anniversaire :\n\n📅 Date : "+formattedDate+"\n🕒 Heure : "+chosenTime+"\n📍 Lieu : "+chosenPlace+"\n\n💌 Mon petit souhait : "+(note || "Je te laisse choisir une jolie surprise ❤️")+"\n\nMaintenant, Monsieur, à vous de confirmer le programme ! 😂🌹\n\nJ'ai hâte de partager ce joli moment avec toi. ❤️";
+    const url="https://wa.me/?text="+encodeURIComponent(message);
+    status.textContent="Ton message est prêt. WhatsApp va s'ouvrir : vérifie-le puis appuie sur Envoyer. 💚";
+    window.open(url,"_blank","noopener,noreferrer");
+  });
+
+  const canvas=document.getElementById("confetti");
+  const ctx=canvas.getContext("2d");
+  let pieces=[],raf=0;
+  function resizeCanvas(){canvas.width=window.innerWidth*devicePixelRatio;canvas.height=window.innerHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);}
+  resizeCanvas(); window.addEventListener("resize",resizeCanvas,{passive:true});
+  function launchConfetti(){
+    if (reduceMotion || !ctx) return;
+    cancelAnimationFrame(raf);
+    const w=window.innerWidth,h=window.innerHeight;
+    pieces=Array.from({length:100},()=>({x:w*.5+(Math.random()-.5)*w*.45,y:h*.32+(Math.random()-.5)*80,vx:(Math.random()-.5)*7,vy:-2-Math.random()*6,size:3+Math.random()*5,rot:Math.random()*6,vr:(Math.random()-.5)*.2,life:90+Math.random()*55,hue:Math.random()*55+330}));
+    let frame=0;
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      pieces.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.12;p.rot+=p.vr;p.life--;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle="hsl("+p.hue+" 85% 72%)";ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*1.5);ctx.restore();});
+      pieces=pieces.filter(p=>p.life>0&&p.y<h+30);
+      frame++;
+      if(pieces.length&&frame<180) raf=requestAnimationFrame(draw); else ctx.clearRect(0,0,w,h);
+    }
+    raf=requestAnimationFrame(draw);
+  }
+})();
+</script>
+</body>
+</html>
